@@ -8,7 +8,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use TgBotApi\BotApiBase\BotApiComplete;
 use TgBotApi\BotApiBase\Method\GetWebhookInfoMethod;
-use TgBotApi\BotApiBase\Method\SetWebhookMethod;
 
 class InfoController implements ControllerInterface
 {

@@ -1,9 +1,6 @@
 FROM alpine:edge
 
-#COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
 COPY ./ /var/www/html/
-
-#RUN docker-php-ext-install bz2 && docker-php-ext-enable bz2
 
 WORKDIR /var/www/html
 

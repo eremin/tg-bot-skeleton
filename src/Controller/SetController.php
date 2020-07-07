@@ -7,6 +7,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use TgBotApi\BotApiBase\BotApiComplete;
+use TgBotApi\BotApiBase\Exception\BadArgumentException;
+use TgBotApi\BotApiBase\Exception\ResponseException;
 use TgBotApi\BotApiBase\Method\SetWebhookMethod;
 
 class SetController implements ControllerInterface
@@ -27,6 +29,9 @@ class SetController implements ControllerInterface
         return $request->getUri()->getPath() === '/set';
     }
 
+    /**
+     * @throws ResponseException|BadArgumentException
+     */
     public function response(RequestInterface $request): ResponseInterface
     {
         if ($this->botApiComplete->setWebhook(SetWebhookMethod::create($this->botUrl))) {

@@ -7,9 +7,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use TgBotApi\BotApiBase\BotApiComplete;
+use TgBotApi\BotApiBase\Exception\ResponseException;
 use TgBotApi\BotApiBase\Method\DeleteWebhookMethod;
-use TgBotApi\BotApiBase\Method\GetWebhookInfoMethod;
-use TgBotApi\BotApiBase\Method\SetWebhookMethod;
 
 class UnsetController implements ControllerInterface
 {
@@ -27,6 +26,9 @@ class UnsetController implements ControllerInterface
         return $request->getUri()->getPath() === '/unset';
     }
 
+    /**
+     * @throws ResponseException
+     */
     public function response(RequestInterface $request): ResponseInterface
     {
         if ($this->botApiComplete->deleteWebhook(DeleteWebhookMethod::create())) {

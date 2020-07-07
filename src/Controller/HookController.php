@@ -2,10 +2,11 @@
 
 namespace BotNamespace\Controller;
 
-use Laminas\Diactoros\Response;
 use BotNamespace\UpdateHandle;
+use Laminas\Diactoros\Response;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use TgBotApi\BotApiBase\Exception\BadRequestException;
 use TgBotApi\BotApiBase\WebhookFetcher;
 
 class HookController implements ControllerInterface
@@ -24,6 +25,9 @@ class HookController implements ControllerInterface
         return $request->getUri()->getPath() === '/hook';
     }
 
+    /**
+     * @throws BadRequestException
+     */
     public function response(RequestInterface $request): ResponseInterface
     {
         $updateType = $this->fetcher->fetch($request);
