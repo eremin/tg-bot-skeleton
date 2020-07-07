@@ -1,0 +1,25 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+before_script:
+  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
+build:
+  stage: build
+  script:
+    - docker build --network host --pull -f docker/php/Dockerfile -t "$CI_REGISTRY_IMAGE:php-$CI_COMMIT_REF_SLUG" .
+    - docker push "$CI_REGISTRY_IMAGE:php-$CI_COMMIT_REF_SLUG"
+  only:
+    - tags
+
+build-test:
+  stage: build
+  script:
+    - docker build --network host --pull -f docker/php/Dockerfile -t "$CI_REGISTRY_IMAGE:php-$CI_COMMIT_REF_SLUG" .
+    - docker push "$CI_REGISTRY_IMAGE:php-$CI_COMMIT_REF_SLUG"
+  only:
+    - branches
+  except:
+    - master

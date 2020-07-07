@@ -1,0 +1,23 @@
+{
+  "autoload" : {
+    "psr-4": {
+      "BotNamespace\\": "src/"
+    }
+  },
+  "name": "eremin/tg-bot-skeleton",
+  "license": "MIT",
+  "type": "project",
+  "require": {
+    "php": "^7.4",
+    "php-di/php-di": "^6.0",
+    "spiral/roadrunner": "^1.8",
+    "symfony/http-client": "^5.1",
+    "tg-bot-api/bot-api-base": "^1.6",
+    "psr/http-factory": "^1.0",
+    "psr/http-client": "^1.0",
+    "nyholm/psr7": "^1.3",
+    "spiral/dumper": "^1.1"
+  },
+  "require-dev": {
+  }
+}
